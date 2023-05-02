@@ -67,7 +67,7 @@ void print(Node* &head)
     Node* temp = head;
     while(temp != NULL)
     {
-        cout << temp -> data << " ";
+        cout << temp -> data << " -> ";
         temp = temp -> next;
     }
     cout << endl;
@@ -142,7 +142,8 @@ int main()
     }
     print(head);
 
+    cout << "Head At : " << head -> data << endl;
+    cout << "tail At : " << tail -> data << endl;
 
-     
     return 0;
 }
