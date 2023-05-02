@@ -1,8 +1,7 @@
 #include<iostream>
 using namespace std;
 
-class Node
-{
+class Node{
     public:
     int data;
     Node* next;
@@ -12,8 +11,8 @@ class Node
         this -> data = data;
         this -> next = NULL;
         this -> prev = NULL;
-    }
-}; 
+    }   
+};
 
 void insertAtHead(Node* &head, Node* &tail, int d)
 {
@@ -83,16 +82,6 @@ void insertAtPosition(Node* &head, Node* &tail, int position, int d)
         return;
     }
 
-    //2 ways to insert at position
-
-    //1st
-    // Node* newNode = new Node(d);
-    // newNode -> next = temp -> next;
-    // newNode -> prev = temp;
-    // temp -> next -> prev = newNode;
-    // temp -> next = newNode;
-
-    //2nd
     Node* newNode = new Node(d);
     newNode -> next = temp -> next;
     newNode -> prev = temp;
@@ -102,11 +91,6 @@ void insertAtPosition(Node* &head, Node* &tail, int position, int d)
 
 int main()
 {
-    // Node* node1 = new Node(30);
-    // Node* head = node1;
-    // Node* tail = node1;
-
-    //edge case 
     Node *head = NULL;
     Node *tail = NULL;
 
@@ -123,7 +107,6 @@ int main()
     //AtPosition
     insertAtPosition(head, tail, 2, 20);
     print(head, tail);
-
 
     return 0;
 }
