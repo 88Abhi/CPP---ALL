@@ -16,27 +16,44 @@ class Node
 
 //inserting at head
 
-void insertAtHead(Node* &head, int d)
+void insertAtHead(Node* &head, Node* &tail, int d)
 {
+    if(head == NULL)
+    {
+        Node *temp = new Node(d);
+        head = temp;
+        tail = temp;
+    }
+    else{
     Node* newNode = new Node(d);
     newNode -> next = head;
     head = newNode;
+    }
 }
 
 //inserting at tail
 
-void insertAtTail(Node* &tail, int d)
+void insertAtTail(Node* &head, Node* &tail, int d)
 {
+    if(tail == NULL)
+    {
+        Node* temp = new Node(d);
+        head = temp;
+        tail = temp;
+    }
+    else
+    {
     Node* newNode = new Node(d);
     tail -> next = newNode;
     tail = newNode;
+    }
 }
 
-void insertAtPosition(Node* &head, int pos, int d)
+void insertAtPosition(Node* &head, Node* &tail, int pos, int d)
 {
     if(pos == 1)
     {
-        insertAtHead(head, d);
+        insertAtHead(head, tail, d);
         return;
     }
 
@@ -51,7 +68,7 @@ void insertAtPosition(Node* &head, int pos, int d)
 
     if(temp -> next == NULL)
     {
-        insertAtTail(temp, d);
+        insertAtTail(head, tail, d);
         return;
     }
     Node* newNode = new Node(d);
@@ -62,7 +79,7 @@ void insertAtPosition(Node* &head, int pos, int d)
 
 //travesing in LinkedList
 
-void print(Node* &head)
+void print(Node* &head, Node* tail)
 {
     Node* temp = head;
     while(temp != NULL)
@@ -71,12 +88,14 @@ void print(Node* &head)
         temp = temp -> next;
     }
     cout << endl;
+    cout << "Head At : " << head -> data << endl;
+    cout << "tail At : " << tail -> data << endl;
+    cout << endl;
 }
 
 
 int main()
 {
-    Node* node1 = new Node(5);
     //cout << node1 -> data << endl;
     //cout << node1 -> next << endl;
 /*
@@ -98,8 +117,8 @@ int main()
     print(head);
 */
 
-    Node* head = node1;
-    Node* tail = node1;
+    Node* head = NULL;
+    Node* tail = NULL;
     int n;
     cin >> n;
 
@@ -109,10 +128,10 @@ int main()
     {
         int val;
         cin >> val;
-        insertAtHead(head, val);
+        insertAtHead(head, tail, val);
     }
 
-    print(head);
+    print(head, tail);
 
     //AtTail
 
@@ -123,10 +142,10 @@ int main()
     {
         int val1;
         cin >> val1;
-        insertAtTail(tail, val1);
+        insertAtTail(head, tail, val1);
     }
 
-    print(head);
+    print(head, tail);
 
     //AtPosition
 
@@ -138,12 +157,11 @@ int main()
         int val2, pos;
         cin >> val2;
         cin >> pos;
-        insertAtPosition(head, pos, val2);
+        insertAtPosition(head, tail, pos, val2);
     }
-    print(head);
+    print(head, tail);
 
-    cout << "Head At : " << head -> data << endl;
-    cout << "tail At : " << tail -> data << endl;
+    
 
     return 0;
 }
