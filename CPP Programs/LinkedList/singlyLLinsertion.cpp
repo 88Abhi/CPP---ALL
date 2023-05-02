@@ -116,7 +116,8 @@ int main()
     insertAtPosition(head, 5 , 25);
     print(head);
 */
-
+    //Node* node1 = new Node(5);
+    //edge case
     Node* head = NULL;
     Node* tail = NULL;
     int n;
