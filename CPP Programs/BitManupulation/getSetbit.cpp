@@ -2,10 +2,6 @@
 using namespace std;
 int main()
 {
-    /*
-    new line added
-    */
-
     // Finding kth bit of a numsber
 
     int n;
