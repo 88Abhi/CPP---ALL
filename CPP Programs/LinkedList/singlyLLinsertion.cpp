@@ -93,6 +93,26 @@ void print(Node* &head, Node* tail)
     cout << endl;
 }
 
+Node* reverse(Node* &head, Node* &tail)
+{
+    Node* temp = head;
+    tail = temp;
+    if(head == NULL || head -> next == NULL)
+    {
+        return head;
+    }
+    Node* prev = NULL;
+    Node* curr = head;
+    Node* forward = NULL;
+    while(curr != NULL)
+    {
+        forward = curr -> next;
+        curr -> next = prev;
+        prev = curr;
+        curr = forward;
+    }
+    return prev;
+}
 
 int main()
 {
@@ -162,7 +182,8 @@ int main()
     }
     print(head, tail);
 
-    
+    Node* temp = reverse(head, tail);
+    print(temp, tail);
 
     return 0;
 }

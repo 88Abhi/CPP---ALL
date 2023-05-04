@@ -1,7 +1,8 @@
 #include<iostream>
 using namespace std;
 
-class Node{
+class Node
+{
     public:
     int data;
     Node* next;
@@ -11,18 +12,8 @@ class Node{
         this -> data = data;
         this -> next = NULL;
         this -> prev = NULL;
-    }   
-    ~Node()
-    {
-        int value = this -> data; 
-        if(this -> next != NULL)
-        {
-            this -> next = NULL;
-            delete next;
-        }
-        cout << "Memory free for the node with data : "<< value << endl;
     }
-};
+}; 
 
 void insertAtHead(Node* &head, Node* &tail, int d)
 {
@@ -92,6 +83,16 @@ void insertAtPosition(Node* &head, Node* &tail, int position, int d)
         return;
     }
 
+    //2 ways to insert at position
+
+    //1st
+    // Node* newNode = new Node(d);
+    // newNode -> next = temp -> next;
+    // newNode -> prev = temp;
+    // temp -> next -> prev = newNode;
+    // temp -> next = newNode;
+
+    //2nd
     Node* newNode = new Node(d);
     newNode -> next = temp -> next;
     newNode -> prev = temp;
@@ -99,65 +100,39 @@ void insertAtPosition(Node* &head, Node* &tail, int position, int d)
     newNode -> next -> prev = newNode;
 }
 
-// DELETION IN DOUBLY LINKEDLIST
-
-void deleteAtHead(Node* &head)
+void reverse(Node* &head, Node* &tail)
 {
-    Node* temp = head;
-    head = head -> next;
-    head -> prev = NULL;
-    temp -> next = NULL;
-    delete temp;
-}
-
-void deleteAtTail(Node* &tail)
-{
-    Node* temp = tail;
-    tail = tail -> prev;
-    tail -> next = NULL;
-    temp -> prev = NULL;
-    delete temp;
-}
-
-void deleteAtPosition(Node* &head, Node* &tail, int index)
-{
-    if(index == 0)
-    {
-        deleteAtHead(head);
-        return;
+    Node* temp = NULL;
+    Node* current = head;
+ 
+    /* swap next and prev for all nodes of
+    doubly linked list */
+    while (current != NULL) {
+        temp = current->prev;
+        current->prev = current->next;
+        current->next = temp;
+        current = current->prev;
     }
-    Node* curr = head;
-    Node* prev = NULL;
-    int count = 0;
-    while(count < index)
-    {
-        prev = curr;
-        curr = curr -> next;
-        count++;
-    }
-    if(curr -> next == NULL)
-    {
-        deleteAtTail(tail);
-        return;
-    }
-    prev -> next = curr -> next;
-    curr -> next -> prev = prev;
-
-    curr -> prev = curr -> next = NULL;
-    delete curr;
+ 
+    /* Before changing the head, check for the cases like
+       empty list and list with only one node */
+    if (temp != NULL)
+        head = temp->prev;
 }
 
 int main()
 {
+    // Node* node1 = new Node(30);
+    // Node* head = node1;
+    // Node* tail = node1;
+
+    //edge case 
     Node *head = NULL;
     Node *tail = NULL;
 
     //INSERTION
 
     //AtHead
-    insertAtHead(head, tail, 30);
-    print(head, tail);
-
     insertAtHead(head, tail, 10);
     print(head, tail);
 
@@ -169,18 +144,7 @@ int main()
     insertAtPosition(head, tail, 2, 20);
     print(head, tail);
 
-    // DELETION
-
-    //head
-    deleteAtHead(head);
-    print(head, tail);
-
-    //tail
-    deleteAtTail(tail);
-    print(head, tail);
-
-    //position
-    deleteAtPosition(head, tail, 2);
+    reverse(head, tail);
     print(head, tail);
 
     return 0;
