@@ -1,8 +1,15 @@
 #include<iostream>
 using namespace std;
 int main(){
-    int a = 10;
-    int b = 20;
-    int c = a + b;
-    cout << c << endl;
+    int n;
+    int sum = 0;
+    cin >> n;
+    for(int i = 0; i < n; i++)
+    {
+        sum = sum + i;
+        cout << "sum is : " << sum << endl;
+    }
+    cout << "total sum is : " << sum << endl;
+    cout << "the end" << endl;
+    return 0;
 }
