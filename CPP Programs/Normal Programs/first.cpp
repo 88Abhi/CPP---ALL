@@ -13,6 +13,3 @@ int main(){
     cout << "the end" << endl;
     return 0;
 }
-/*
-new line added
-*/
