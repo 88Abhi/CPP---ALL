@@ -20,6 +20,7 @@ class Node{
             delete next;
         }
         cout << "Memory free for the node with data : "<< value << endl;
+        cout << endl;
     }
 
 };
@@ -76,7 +77,7 @@ void print(Node* &head)
         cout << temp -> data << " -> ";
         temp = temp -> next;
     }
-    cout << endl;
+    cout << endl << endl;
 }
 
 Node* getReverse(Node* &head)
@@ -164,7 +165,3 @@ int main()
     print(temp1);
     return 0;
 }
-
-/*
-new line added successfully
-*/
